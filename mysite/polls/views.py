@@ -7,13 +7,14 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
-
+from django.utils import timezone
 from .models import Choice, Question
 
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
+
 
     def get_queryset(self):
         """Return the last five published questions."""

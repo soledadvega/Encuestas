@@ -1,25 +1,14 @@
-<h1>{{ question.quesrion_text }}</h1>
-
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-{% endfor %}
-<input type="submit" value="Vote">
-</form>
-
-
-<!--{% if latest_question_list %}
+{% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>>
+        <li><a href="{% url 'polls:detail' question.id %}/">{{ question.question_text }}</a></li>
+        # the 'name' value as called by the {% url %} template tag
+        path('<int:question_id>/', views.detail, name='detail'),
+        # added the word 'specifics'
+        path('specifics/<int:question_id>/', views.detail, name='detail'),
+
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p> -->
-
+    <p>No polls are available.</p>
 {% endif %}
