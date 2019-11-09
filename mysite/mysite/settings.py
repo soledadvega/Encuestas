@@ -23,12 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h-^aaot8(2##*nh!w^o=7g1^iabs#u75wd9k2#y2j!f1uus-p4'
 #*clave secreta para hacer encriptaciones de las contraseñas de los usuarios
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
  #*cambie True x False en modo prod.
 
-ALLOWED_HOSTS = [0]
+ALLOWED_HOSTS = []
 #poner ip si cambio arriba por modo prod
-
 
 # Application definition
 
@@ -60,7 +59,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'  #idioma puedponer (es)
+LANGUAGE_CODE = 'es'  #idioma (es) cambio(en-us)
 
 TIME_ZONE = 'UTC'  #uso horario
 
@@ -127,3 +126,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/' #permite def. la url para arch. estaticos
+#STATIC_ROOT = "/var/www/example.com/static/"   #agregue de testing

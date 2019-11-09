@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from polls import views
 
 urlpatterns = [
     path('polls/', include('polls.urls')), #f recib 4 arg, 2 req, route y view;2 opc. kwargs y name

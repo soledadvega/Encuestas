@@ -1,7 +1,5 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
-from .models import Question
 from django.template import loader
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -24,6 +22,12 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
 
 
 class ResultsView(generic.DetailView):
@@ -48,3 +52,5 @@ def vote(request, question_id):
         # con datos POST. Esto evita que los datos se publiquen dos veces si un
         # usuario presiona el botón Atrás.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+    return HttpResponse(response % question_id) #agrego
